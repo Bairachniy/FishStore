@@ -1,0 +1,17 @@
+﻿@using FishStore.WebUI.Models
+@using FishStore.WebUI.HtmlHelpers
+@model FishesListViewModel
+
+@{
+    ViewBag.Title = "Рыбные позиции";
+}
+
+@foreach (var p in @Model.Fishes)
+{
+    @Html.Partial("FishSummary", p)
+}
+
+    <div class="btn-group pull-right">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+            new { page = x, category = Model.CurrentCategory }))
+    </div>
