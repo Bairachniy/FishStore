@@ -40,19 +40,19 @@ namespace FishStore.WebUI.Controllers
             return View(model);
         }
 
-        //public FileContentResult GetImage(int fishId)
-        //{
-        //    Fish fish = repository.Fishes
-        //        .FirstOrDefault(g => g.FishId == fishId);
+        public FileContentResult GetImage(int fishId)
+        {
+            Fish fish = repository.Fishes
+                .FirstOrDefault(g => g.FishId == fishId);
 
-        //    if (fish != null)
-        //    {
-        //        return File(fish.ImageData, fish.ImageMimeType);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+            if (fish != null)
+            {
+                return File(fish.ImageData, fish.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

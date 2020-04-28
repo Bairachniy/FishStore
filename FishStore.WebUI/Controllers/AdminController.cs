@@ -30,21 +30,21 @@ namespace FishStore.WebUI.Controllers
         }
 
         // Перегруженная версия Edit() для сохранения изменений
-        [HttpPost]
-        public ActionResult Edit(Fish fish)
-        {
-            if (ModelState.IsValid)
-            {
-                repository.SaveFish(fish);
-                TempData["message"] = string.Format("Изменения в товаре \"{0}\" были сохранены", fish.Name);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                // Что-то не так со значениями данных
-                return View(fish);
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Edit(Fish fish)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        repository.SaveFish(fish);
+        //        TempData["message"] = string.Format("Изменения в товаре \"{0}\" были сохранены", fish.Name);
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        // Что-то не так со значениями данных
+        //        return View(fish);
+        //    }
+        //}
         public ViewResult Create()
         {
             return View("Edit", new Fish());
@@ -60,26 +60,26 @@ namespace FishStore.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public ActionResult Edit(Fish fish, HttpPostedFileBase image = null)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (image != null)
-        //        {
-        //            fish.ImageMimeType = image.ContentType;
-        //            fish.ImageData = new byte[image.ContentLength];
-        //            image.InputStream.Read(fish.ImageData, 0, image.ContentLength);
-        //        }
-        //        repository.SaveFish(fish);
-        //        TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", fish.Name);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        // Что-то не так со значениями данных
-        //        return View(fish);
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult Edit(Fish fish, HttpPostedFileBase image = null)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    fish.ImageMimeType = image.ContentType;
+                    fish.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(fish.ImageData, 0, image.ContentLength);
+                }
+                repository.SaveFish(fish);
+                TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", fish.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // Что-то не так со значениями данных
+                return View(fish);
+            }
+        }
     }
 }

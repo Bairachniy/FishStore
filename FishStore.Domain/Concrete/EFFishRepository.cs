@@ -29,8 +29,8 @@ namespace FishStore.Domain.Concrete
                     dbEntry.Description = fish.Description;
                     dbEntry.Price = fish.Price;
                     dbEntry.Category = fish.Category;
-                    //dbEntry.ImageData = fish.ImageData;
-                    //dbEntry.ImageMimeType = fish.ImageMimeType;
+                    dbEntry.ImageData = fish.ImageData;
+                    dbEntry.ImageMimeType = fish.ImageMimeType;
                 }
             }
             context.SaveChanges();
